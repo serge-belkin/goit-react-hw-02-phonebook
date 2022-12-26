@@ -5,8 +5,6 @@ import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
 
-export const 
-
 export class App extends Component {
   state = {
     contacts: [
@@ -20,12 +18,12 @@ export class App extends Component {
     number: '',
   };
 
-    handleChange = e => {
+  handleChange = e => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
-    };
+  };
   
-    handleSubmit = e => {
+  handleSubmit = e => {
     console.log(e);
     const id = nanoid();
     const name = e.name;
@@ -33,6 +31,38 @@ export class App extends Component {
     const contactsLists = [...this.state.contacts];
     contactsLists.push({ name, id, number });
     this.setState({ contacts: contactsLists });
-    };
-  
-  
+  };
+
+  getFilteredContacts = () => {
+    const filterContactsList = this.state.contacts.filter(contact => {
+      return contact.name
+        .toLowerCase()
+        .includes(this.state.filter.toLowerCase());
+    });
+
+    return filterContactsList;
+  };
+
+  render() {
+    const { filter } = this.state;
+
+    return (
+      <div
+        style={{
+          height: '100vh',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          fontSize: 20,
+          color: '#010101',
+        }}
+      >
+        <h1>Phonebook</h1>
+        <ContactForm handleSubmit={this.handleSubmit} />
+        <h2> Contacts</h2>
+        <Filter filter={filter} handleChange={this.handleChange} />
+        <ContactList contacts={this.getFilteredContacts()} />
+      </div>
+    );
+  }
+}
