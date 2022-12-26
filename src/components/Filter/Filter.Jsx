@@ -2,6 +2,7 @@ import propTypes from "prop-types";
 import css from './Filter.module.css';
 
 export const Filter = ({ filter, handleChange }) => (
+  <div>
   <label className={css.filterTitle}>
     Find contacts by Name
     <input
@@ -13,6 +14,7 @@ export const Filter = ({ filter, handleChange }) => (
       onChange={handleChange}
     />
   </label>
+  </div>
 );
 
 Filter.propTypes = {
