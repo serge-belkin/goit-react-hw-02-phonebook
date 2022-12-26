@@ -1,7 +1,7 @@
 import propTypes from "prop-types";
 import css from './Filter.module.css';
 
-const Filter = ({ filter, handleChange }) => (
+export const Filter = ({ filter, handleChange }) => (
   <div>
   <label className={css.filterTitle}>
     Find contacts by Name
@@ -21,5 +21,3 @@ Filter.propTypes = {
   filter: propTypes.string.isRequired,
   handleChange: propTypes.func.isRequired,
 };
-
-export default Filter;
