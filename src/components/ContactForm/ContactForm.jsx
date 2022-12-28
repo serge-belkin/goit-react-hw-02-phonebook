@@ -15,9 +15,8 @@ export class ContactForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const form = e.currentTarget;
-    this.props.handleSubmit(this.state);
-    form.reset();
+    this.props.onSubmit(this.state);
+    this.setState({ name: '', number: '' });
   };
 
   render() {
@@ -61,5 +60,5 @@ export class ContactForm extends Component {
 }
 
 ContactForm.propTypes = {
-  handleSubmit: propTypes.func.isRequired,
+  onSubmit: propTypes.func,
 };
